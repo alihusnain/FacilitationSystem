@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d46d5f84999b4ca6a938f32c9901f722" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="TFSDataBaseModel.Announcement" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.Class" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.StudentClass" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.StudentAssignmnet" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.teacherAssignment" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.Quiz" Width="1.5" PointX="0.5" PointY="3.875" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.QuizStudent" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.Subject" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.SubjectSection" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.SubjectSectionTeacher" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.TeacherAttendance" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.User" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.Clerk" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.Student" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.Teacher" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.UserPhone" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.UserQualification" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.Employee" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.Group" Width="1.5" PointX="12.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.GroupSubject" Width="1.5" PointX="12.375" PointY="7.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.Diary" Width="1.5" PointX="12.375" PointY="10.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.StudentAttendance" Width="1.5" PointX="12.375" PointY="13.75" />
+        <EntityTypeShape EntityType="TFSDataBaseModel.StudentSubjectSection" Width="1.5" PointX="14.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

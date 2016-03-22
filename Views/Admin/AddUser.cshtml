@@ -1,0 +1,430 @@
+﻿@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewBag.Title = "AddUser";
+}
+
+<head>
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+    <script src="~/scripts/jquery-ui.js"></script>
+    <link rel="stylesheet" href="~/content/style.css">
+    <link rel="stylesheet" href="~/content/jquery-ui.css">
+    <title></title>
+
+    <script>
+        $(function () {
+            $("#dp").datepicker({
+                showOn: "button",
+                buttonImage: "/img/calendar.gif",
+                buttonImageOnly: true,
+                buttonText: "Select date",
+                changeMonth: true,
+                changeYear: true,
+                showAnim: "slide",
+                dateFormat: "dd-M-yy",
+                maxDate: "+0d"
+                //showButtonPanel: true
+            });
+
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $("#dp2").datepicker({
+                showOn: "button",
+                buttonImage: "/img/calendar.gif",
+                buttonImageOnly: true,
+                buttonText: "Select date",
+                changeMonth: true,
+                changeYear: true,
+                showAnim: "slide",
+                dateFormat: "dd-M-yy",
+                maxDate: "+0d"
+                //showButtonPanel: true
+            });
+
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+    var dynamicId, inputName, numberEachType;
+    $('.studentprofileupdateBody a').click(function () {
+    console.log('ok');
+    var $tr = $(this).closest('tr').prev();
+    numberEachType = $('table#tblEducation tr[name="'+$tr.attr('name')+'"]').length;
+    dynamicId = $tr.attr('name') + numberEachType;
+    var clone = $tr.clone().attr('id',dynamicId); //dynamic ID at <tr>
+        inputName = clone.find('input').attr('name');
+        dynamicId = inputName.substring(0,inputName.length-1) + (numberEachType+1);
+        clone.find('input').attr('id', dynamicId).attr('name', dynamicId).attr('title', dynamicId.toUpperCase()).val(''); //dynamic ID, Name and title at <input>
+        $tr.after(clone);
+        });
+        });
+    </script>
+
+        <script>
+            $(function () {
+                var availableTags = [
+                  "TEACHER",
+                  "STUDENT",
+                  "TEACHER"
+                ];
+                $("#tags").autocomplete({
+                    source: availableTags
+                });
+            });
+        </script>
+
+        <script>
+
+            $(document).ready(function () {
+
+                $('#checking').hide();
+
+                $('#UserName').change(function () {
+
+                    var userName = $('#UserName').val();
+
+                    //alert('User Name ='+ userName);
+                    $('#checking').show();
+                    $.getJSON("/Admin/CheckUserName?UserName=" + userName, function (data) {
+                        $('#checking').hide();
+                        if (data) {
+                            $('#result').text("User already exists in database");
+                            $('#sumbit').hidden();
+                        }
+                        else {
+                            $('#result').text("User Name is available");
+                            $('#sumbit').show();
+                        }
+                    });
+
+                });
+            });
+
+            $(document).ready(function () {
+
+                $('#checking').hide();
+
+                $('#sumbit').click(function () {
+
+                    var userName = $('#UserName').val();
+
+                    //alert('User Name ='+ userName);
+                    $('#checking').show();
+                    $.getJSON("/Admin/CheckUserName?UserName=" + userName, function (data) {
+                        $('#checking').hide();
+                        if (data) {
+                            $('#result').text("User already exists in database");
+                            $('#sumbit').hide();
+                        }
+                        else {
+                            $('#result').text("User Name is available");
+                            $('#sumbit').show();
+                        }
+                    });
+
+                });
+
+            });
+
+        </script>
+
+        <script>
+            @*function emailValidate()
+        {
+            var email = document.getElementById("email").value;
+            if ((email.indexOf('@@') < 0) || (email.indexOf('.') < 0) || (email.lastIndexOf('.') - email.lastIndexOf('@@') < 2))
+            {
+                alert('Email Not Validated');
+                return false;
+            }
+            return true;
+        }*@
+        </script>
+
+
+</head>
+
+<!-- NAVBAR
+================================================== -->
+<body>
+
+
+    <div class="container">
+        <div class="col-lg-5"></div>
+        <h3 class="col-lg-6">Add New User</h3>
+    </div>
+
+    <div>
+        <form action="/Admin/AddNewUser" class="form-horizontal" role="form" enctype="multipart/form-data" method="post">
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="name">Name: </label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="name" placeholder="Enter Name" required id="UserName" />
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="name">Father Name: </label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="FatherName" placeholder="Enter Father Name" required="" />
+                    </div>
+                    <div class="col-lg-3" id="result"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="gender">Gender </label>
+                    <div class="col-lg-4">
+                        <select id="designation" class="form-control" name="gender" required="">
+                            <option>Male</option>
+                            <option>Female</option>
+                            </select>
+                    </div>
+               </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="name">B-FORM / CNIC: </label>
+                    <div class="col-lg-4">
+                        <input type="text" pattern="\d{5}-\d{7}-\d{1}" class=" form-control" name="BFORMCNIC" placeholder="Enter B-FORM / CNIC Number" required="" />
+                    </div>
+                    <div class="col-lg-3" id="result"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="name">Date of Birth: </label>
+                    <div class="col-lg-4">
+                        <input id="dp" type="date" class="form-control " name="DOB" placeholder="Enter Date of Birth" required="" />
+                    </div>
+                    <div class="col-lg-3" id="result"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="name">Current Address: </label>
+                    <div class="col-lg-4">
+                        <textarea class="form-control" name="CurrentAddress" placeholder="Enter Current Address" required="" ></textarea>
+                    </div>
+                    <div class="col-lg-3" id="result"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="name">Permanent Address: </label>
+                    <div class="col-lg-4">
+                        <textarea class="form-control" name="PermanentAddress" placeholder="Enter Permanent Address, Leave Empty if Same as Current Address" ></textarea>
+                    </div>
+                    <div class="col-lg-3" id="result"></div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="pwd">Password:</label>
+                    <div class="col-lg-4">
+                        <input type="password" class="form-control" name="password" placeholder="Enter Password" required="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="pwd">Retype Password:</label>
+                    <div class="col-lg-4">
+                        <input type="password" class="form-control" name="password1" placeholder="Enter Password" required="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="designation">Designation:</label>
+                    <div class="col-lg-4" >
+                        <select id="designation" class="form-control" name="designation" required="">
+                            <option>Teacher</option>
+                            <option>Student</option>
+                            <option>Clerk</option>
+                            <option>Other Employe</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="email">Email:</label>
+                    <div class="col-lg-4">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="phone">Phone: </label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="phone" placeholder="Enter Phone" required="" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="name">Date of Joining: </label>
+                    <div class="col-lg-4">
+                        <input id="dp2" type="date" class="form-control" name="DOJ" placeholder="Enter Date of Joining" />
+                    </div>
+                    <div class="col-lg-3" id="result"></div>
+                </div>
+
+                <div class="form-group" >
+                    <table width="100%">
+
+                        <tr>
+                            <td>
+                                <div id="Education">
+                                    <table class="Studentprofile" id="tblEducation">
+                                        <tr>
+                                            <td colspan="2"><br /> Education Details</td>
+                                        </tr>
+                                        <tr id="schoolRow" name="schoolRow">
+
+                                            <td class="studentprofileupdateHead">
+                                                <label for="schools">Schools:</label>
+                                            </td>
+                                            <td class="studentprofileupdateBody" id="schools">
+                                                <br />
+                                                <input type="text" id="sdeg1" name="sdeg1" title="SDeg1" placeholder="Degree" />
+                                                <input type="text" id="sinst1" name="sinst1" title="SInst1" placeholder="Institute Name" />
+                                                <input type="text" id="srol1" name="srol1" title="SRol1" placeholder="Roll Number" />
+                                                <input type="text" id="sgpa1" name="sgpa1" title="SGpa1" placeholder="GPA/Grade" />
+                                                <input type="text" id="sper1" name="sper1" title="SPer1" placeholder="Percentage" />
+                                                <select id="selSYear1" name="selSYear1" title="SelSYear1">
+                                                    <option value="0">-Select-</option>
+                                                    <option value="1">2010</option>
+
+                                                    <option value="2">2009</option>
+                                                    <option value="3">2008</option>
+                                                    <option value="4">2007</option>
+                                                    <option value="5">2006</option>
+                                                    <option value="6">2005</option>
+                                                    <option value="7">2004</option>
+                                                    <option value="8">2001</option>
+                                                    <option value="8">2000</option>
+                                                </select>
+                                            </td>
+                                            <td><a href="#" class="remove_field btn btn-danger small" style="float:left ; margin-left:15px;">X</a></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="studentprofileupdateHead"></td>
+
+                                            <td class="studentprofileupdateBody">
+                                                <a href="#">Add Schools</a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="2"><br /><hr class="profileUpdate" /><br /></td>
+                                        </tr>
+                                        <tr id="highschoolRow" name="highschoolRow">
+
+                                            <td class="studentprofileupdateHead">
+                                                <label for="highschool">College:</label>
+                                            </td>
+                                            <td class="studentprofileupdateBody" id="college">
+                                                <br />
+                                                <input type="text" id="sdeg1" name="sdeg1" title="SDeg1" placeholder="Degree" />
+                                                <input type="text" id="sinst1" name="sinst1" title="SInst1" placeholder="Institute Name" />
+                                                <input type="text" id="srol1" name="srol1" title="SRol1" placeholder="Roll Number" />
+                                                <input type="text" id="sgpa1" name="sgpa1" title="SGpa1" placeholder="GPA/Grade" />
+                                                <input type="text" id="sper1" name="sper1" title="SPer1" placeholder="Percentage" />
+                                                <select id="selSYear1" name="selSYear1" title="SelSYear1">
+                                                    <option value="0">-Select-</option>
+                                                    <option value="1">2010</option>
+
+                                                    <option value="2">2009</option>
+                                                    <option value="3">2008</option>
+                                                    <option value="4">2007</option>
+                                                    <option value="5">2006</option>
+                                                    <option value="6">2005</option>
+                                                    <option value="7">2004</option>
+                                                    <option value="8">2001</option>
+                                                    <option value="8">2000</option>
+                                                </select>
+                                            </td>
+                                            <td><a href="#" class="remove_field btn btn-danger small" style="float:left ; margin-left:15px;">X</a></td>
+                                        </tr>
+                                        
+                                        <tr>
+
+                                            <td class="studentprofileupdateHead"></td>
+                                            <td class="studentprofileupdateBody">
+                                                <a href="#">Add College</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><br /><hr class="profileUpdate" /><br /></td>
+
+                                        </tr>
+                                        <tr id="collegeRow" name="collegeRow">
+                                            <td class="studentprofileupdateHead">
+                                                <label for="universit">University:</label>
+                                            </td>
+                                            <td class="studentprofileupdateBody" id="university">
+                                                <br />
+                                                <input type="text" id="sdeg1" name="sdeg1" title="SDeg1" placeholder="Degree" />
+                                                <input type="text" id="sinst1" name="sinst1" title="SInst1" placeholder="Institute Name" />
+                                                <input type="text" id="srol1" name="srol1" title="SRol1" placeholder="Roll Number" />
+                                                <input type="text" id="sgpa1" name="sgpa1" title="SGpa1" placeholder="GPA/Grade" />
+                                                <input type="text" id="sper1" name="sper1" title="SPer1" placeholder="Percentage" />
+                                                <select id="selSYear1" name="selSYear1" title="SelSYear1">
+                                                    <option value="0">-Select-</option>
+                                                    <option value="1">2010</option>
+
+                                                    <option value="2">2009</option>
+                                                    <option value="3">2008</option>
+                                                    <option value="4">2007</option>
+                                                    <option value="5">2006</option>
+                                                    <option value="6">2005</option>
+                                                    <option value="7">2004</option>
+                                                    <option value="8">2001</option>
+                                                    <option value="8">2000</option>
+                                                </select>
+                                            </td>
+                                            <td><a href="#" class="remove_field btn btn-danger small" style="float:left ; margin-left:15px;">X</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="studentprofileupdateHead"></td>
+                                            <td class="studentprofileupdateBody">
+                                                <a href="#">Add University</a>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><br /><hr class="profileUpdate" /><br /></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-3 col-lg-10">
+                        <input type="submit" value="Add User" id="sumbit" class="btn btn-default" @*onclick="return emailValidate()"*@ />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                @*<!--<img id="blah" src="#" alt="your image" width="140" height="140" />-->
+                <div id="image-holder"> </div>
+                <br /><br />
+                <!--<input type='file' onchange="readURL(this);" />-->
+                <input id="fileUpload" type="file" onchange="readURL(this);"/><br />*@
+
+                <img id="blah" src="~/img/Empty_Profile.png" alt="Upload User image" width="140" height="140" />
+                <br /><br />
+                <input type="file" name="file" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+            </div>
+
+        </form>
+    </div>
+</body>

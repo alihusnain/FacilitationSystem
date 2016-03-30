@@ -1,0 +1,144 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>addSubject</title>
+    <script>
+
+    $(document).ready(function () {
+
+
+       
+
+        $('#b1').click(function () {
+
+            var sub = $('#sub').val();
+
+            
+            $.getJSON("/Admin/CheckSubjectName?sub=" + sub, function (data) {
+
+                if (data) {
+                    alert('Subject Name already exist=' + sub);
+                    $('#sub').text("SubjectName already exists in database");
+
+                }
+                else {
+                    alert('Add Subject=' + sub);
+                    $('#result').text("email is available");
+                }
+            });
+
+        });
+
+
+
+        $('#b2').click(function () {
+
+            var lev = $('#lev').val();
+
+
+            $.getJSON("/Admin/CheckSubjectName?lev=" + lev, function (data) {
+
+                if (data) {
+                    alert('Level Name already exist=' + sub);
+                  
+
+                }
+                else {
+                    alert('Add Level=' + lev);
+                    
+                }
+            });
+
+        });
+
+    });
+    </script>
+
+
+</head>
+
+
+<body>
+    <div class="container">
+        <form class="form-inline" role="form" method="post" @*action="addSubjectNameToDb"*@>
+            <div class="form-group">
+                <label for="sub">Subject:</label>
+                <input type="text" class="form-control" name="sub" id="sub">
+            </div>
+            <input type="submit" value="Add" id="b1" />
+            <div id="result"></div>
+            
+            </form>
+        
+        <br />
+        <form class="form-inline" role="form" method="post" action="addLevelNameToDb">
+            <div class="form-group">
+                <label for="lev"> Level: </label>&nbsp;
+                <input type="text" class="form-control" name="lev" id="lev">
+            </div>
+            <input type="submit" value="Add" id="b2" />
+        </form>
+    </div>
+    <br />
+    <div class="container">
+        <form class="form-inline" role="form" method="post" action="addSubjectDb">
+            <div class="form-group">
+                <label for="sel1">Subject</label>
+                <select class="form-control" name="sub" style="width:100px">
+                    @foreach (var sub in ViewBag.s)
+                    {
+                        <option>@sub.SubjectName</option>
+                    }
+                    
+                </select>
+            </div>&nbsp;
+            <div class="form-group">
+                <label for="sel1">Level</label>
+                <select class="form-control" name="lev" style="width:100px">
+                    @foreach (var sub in ViewBag.l)
+                    {
+                        <option>@sub.LevelName</option>
+                    }
+                </select>
+            </div>
+            <input type="submit" value="Add" />
+        </form>
+
+        </div>
+            <div class="container" style="width:800px; margin-top:30px">
+                <table class="table table-striped table-bordered table-condensed">
+                    <thread>
+                        <tr>
+                            <th>Subject Name</th>
+
+                            <th>Level</th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                        @foreach (var sub in ViewBag.subject)
+                        {
+
+                            <tr>
+                                <td>
+                                    @sub.SubjectName
+                                </td>
+                                <td>
+                                    @sub.SubjectLevel
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+</body>
+</html>

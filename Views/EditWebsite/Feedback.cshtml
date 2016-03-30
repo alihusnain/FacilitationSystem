@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Studnets Feedback</h2>
+
+@using EADWebTeacherFacilitationSystem.Models
+<body>
+
+    <div class="container">
+
+        <table class="table table-striped table-bordered table-hover">
+            <tr><th>Feedback ID</th><th>Studnet Name</th><th>Student Email/Roll Number </th><th>Feedback Subject</th><th>Comment</th><th>Update</th><th>Remove</th></tr>
+
+            @foreach (Feedback i in Model)
+            {
+                <tr><td>@i.FeedbackId</td><td>@i.PersonName</td><td>@i.PersonEmail</td><td>@i.FeedbackSubject</td><td>@i.Comment</td><td> <a href="@("../EditWebsite/EditFeedback/" + i.FeedbackId)">   <input class="btn btn-primary" type="button" value="Edit"> </a> </td><td><a href="@("../EditWebsite/DeleteFeedback/" + i.FeedbackId)">   <input class="btn btn-danger" type="button" value="Delete"> </a></td></tr>
+            }
+
+        </table>
+
+    </div>
+
+    <div class="container">
+        <div class="col-lg-5"></div>
+        <a class="col-lg-6" href="@("../EditWebsite/AddFeedback")"> <input class="btn btn-info" type="button" value="Add a Feedback (+)"> </a>
+    </div>
+
+</body>

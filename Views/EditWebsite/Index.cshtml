@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Manage Website</h2>
+
+
+<head>
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+    <script src="~/scripts/jquery-ui.js"></script>
+    <link rel="stylesheet" href="~/content/style.css">
+    <link rel="stylesheet" href="~/content/jquery-ui.css">
+    <title> Manage Website</title>
+
+</head>
+
+
+<body>
+
+    <div>
+        <div class="container">
+            <div class="list-group">
+                <form action="/EditWebsite/About">
+                    <input type="submit" value=" About Institute " class="btn btn-primary col-lg-4" />
+                </form>
+
+                <form action="/EditWebsite/Course">
+                    <input type="submit" value=" Courses " class="btn btn-success col-lg-4" />
+                </form>
+
+                <form action="/EditWebsite/Events">
+                    <input type="submit" value=" Events " class="btn btn-primary col-lg-4" />
+                </form>
+
+                <br />
+                <br />
+                <br />
+
+                <form action="/EditWebsite/Faculty">
+                    <input type="submit" value=" Faculty Information " class="btn btn-warning col-lg-4" />
+                </form>
+
+                <form action="/EditWebsite/Feedback">
+                    <input type="submit" value=" Feedback from Students " class="btn btn-block col-lg-4" />
+                </form>
+
+                <form action="/EditWebsite/News">
+                    <input type="submit" value=" News " class="btn btn-default col-lg-4" />
+                </form>
+
+                <br />
+                <br />
+                <br />
+
+                <form action="/EditWebsite/Contact">
+                    <input type="submit" value=" Contact Information " class="btn btn-info col-lg-4" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>

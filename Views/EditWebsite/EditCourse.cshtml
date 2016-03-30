@@ -1,0 +1,69 @@
+﻿@model EADWebTeacherFacilitationSystem.Models.Course
+
+@{
+    ViewBag.Title = "Edit Course";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<body>
+    <div class="container">
+        <div class="col-lg-5"></div>
+        <h3 class="col-lg-6">Edit Course Information</h3>
+    </div>
+
+    <div>
+        @using (Html.BeginForm("SaveEditCourse", "EditWebsite", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.HiddenFor(u => u.CourseId)
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.CourseTitle, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.CourseTitle, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.CourseDescription, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextAreaFor(q => q.CourseDescription, new { @class = "form-control" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(q => q.CourseInstructor, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.CourseInstructor, new { @class = "form-control" })
+                </div>
+            </div>
+            
+                        <div class="form-group">
+                @Html.LabelFor(q => q.ClassTimings, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.ClassTimings, new { @class = "form-control" })
+                </div>
+            </div>
+            
+                        <div class="form-group">
+                @Html.LabelFor(q => q.CourseDuration, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.CourseDuration, new { @class = "form-control" })
+                </div>
+            </div>
+            
+                        <div class="form-group">
+                @Html.LabelFor(q => q.CourseFee, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.CourseFee, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-10">
+                    <input type="submit" value="Save" />
+                </div>
+            </div>
+
+        }
+    </div>
+</body>

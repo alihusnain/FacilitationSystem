@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "AddDegree";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model EADWebTeacherFacilitationSystem.Models.UserQualification
+@using EADWebTeacherFacilitationSystem.Models
+<h2>AddDegree</h2>
+
+<div class="container">
+    <div class="col-lg-5"></div>
+    <h3 class="col-lg-6">Add user Degree</h3>
+</div>
+
+<div>
+    @using (Html.BeginForm("AddDegreeinDB", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(q => q.DegreeName, new { @class = "control-label col-lg-3" })
+            <div class="col-lg-4">
+                @Html.TextBoxFor(q => q.DegreeName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(q => q.DegreeRollNo, new { @class = "control-label col-lg-3" })
+            <div class="col-lg-4">
+                @Html.TextBoxFor(q => q.DegreeRollNo, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(q => q.DegreeGrade, new { @class = "control-label col-lg-3" })
+            <div class="col-lg-4">
+                @Html.TextBoxFor(q => q.DegreeGrade, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(q => q.DegreePercentage, new { @class = "control-label col-lg-3" })
+            <div class="col-lg-4">
+                @Html.TextBoxFor(q => q.DegreePercentage, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(q => q.DegreeYear, new { @class = "control-label col-lg-3" })
+            <div class="col-lg-4">
+                @Html.TextBoxFor(q => q.DegreeYear, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(q => q.DegreeInstituteName, new { @class = "control-label col-lg-3" })
+            <div class="col-lg-4">
+                @Html.TextBoxFor(q => q.DegreeInstituteName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-3 col-lg-10">
+                <input type="submit" value="Save" />
+            </div>
+        </div>
+    }
+</div>
+
+<div class="container">
+    @{
+        TFSDataBaseEntities em = new TFSDataBaseEntities();
+        int uID = int.Parse(Session["temp"].ToString());
+        List<UserQualification> uq = em.UserQualifications.Where(x => x.UserId == uID).Select(x => x).ToList();
+        <table border="1"
+               style="background-color:azure">
+            <tr class="alert-success:" style="background-color: gold">
+                <td>ID</td>
+                <td>DEGREE NAME</td>
+                <td>ROLL NO</td>
+                <td>GRADE</td>
+                <td>CGPA / PERCENTAGE</td>
+                <td>COMPLETION DEGREE</td>
+                <td>INSTITUTE NAME</td>
+                <td>DELETE</td>
+                @foreach (UserQualification u in uq)
+                {
+                <tr><td>@u.DegreeName</td><td>@u.DegreeRollNo</td><td>@u.DegreeGrade</td><td>@u.DegreePercentage</td><td>@u.DegreeYear</td><td>@u.DegreeInstituteName</td><td>@Html.ActionLink("Delete", "DeleteDegree", new { id = u.DegreeId })</td></tr>
+                }
+            </table>
+    }
+</div>

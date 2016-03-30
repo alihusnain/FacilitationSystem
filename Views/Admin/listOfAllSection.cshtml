@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>listOfAllSection</title>
+</head>
+<body>
+    <h3>list of Section</h3>
+    <div class="container" style="width:600px;align-content:center">
+        <table class="table table-striped table-bordered table-condensed">
+            <thead>
+                <tr>
+                    
+                    <td class="col-md-3">Section Name</td><td>Subject Name</td><td>Class</td>
+                </tr>
+            </thead>
+            @foreach (var j in ViewBag.SubjectSectionId)
+            { string sectionName="";
+                foreach (var k in ViewBag.SubjectSection)
+                {
+                    if (j == k.SubjectSectionID)
+                    {
+                        <tr>
+                            @foreach(var tm in ViewBag.Section){
+                            if(k.SectionID==tm.SectionID+"")
+                            {sectionName=tm.SectionName;}
+                           
+                            }
+                            <td class="col-md-3">  <a href="/Admin/studentList?id=@j">@sectionName</a></td>
+                           @foreach(var m in ViewBag.Subject)
+                           {
+                              if(k.SubjectID==m.SubjectId)
+                              {
+                                  <td>@m.SubjectName</td>
+                                  <td>@m.SubjectLevel</td>
+                              } 
+                           }
+                            
+
+                        </tr>
+                        break;
+                    }
+                }
+
+            }
+        </table>
+    </div>
+</body>
+</html>

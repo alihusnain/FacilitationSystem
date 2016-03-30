@@ -1,0 +1,59 @@
+﻿@model EADWebTeacherFacilitationSystem.Models.About
+
+@{
+    ViewBag.Title = "Edit About";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<body>
+    <div class="container">
+        <div class="col-lg-5"></div>
+        <h3 class="col-lg-6">Edit About School Information</h3>
+    </div>
+
+    <div>
+        @using (Html.BeginForm("SaveEditAbout", "EditWebsite", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.HiddenFor(u => u.Id)
+            @Html.HiddenFor(u => u.FacebookID)
+            @Html.HiddenFor(u => u.LinkedInID)
+            @Html.HiddenFor(u => u.TwitterID)
+            @Html.HiddenFor(u => u.Phone1)
+            @Html.HiddenFor(u => u.Phone2)
+            @Html.HiddenFor(u => u.Phone3)
+            @Html.HiddenFor(u => u.Address)
+            @Html.HiddenFor(u => u.Email)
+            @Html.HiddenFor(u => u.Location)
+            @Html.HiddenFor(u => u.YoutubeID)
+            @Html.HiddenFor(u => u.GooglePlus)
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.Mission, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextAreaFor(q => q.Mission, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.Vision, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextAreaFor(q => q.Vision, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.AboutUs, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextAreaFor(q => q.AboutUs, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-10">
+                    <input type="submit" value="Save" />
+                </div>
+            </div>
+
+        }
+    </div>
+</body>

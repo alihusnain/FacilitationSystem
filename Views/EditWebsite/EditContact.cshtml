@@ -1,0 +1,109 @@
+﻿@model EADWebTeacherFacilitationSystem.Models.About
+
+@{
+    ViewBag.Title = "Edit Contact";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<body>
+    <div class="container">
+        <div class="col-lg-5"></div>
+        <h3 class="col-lg-6">Edit Contact Information</h3>
+    </div>
+
+    <div>
+        @using (Html.BeginForm("SaveEditContact", "EditWebsite", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.HiddenFor(u => u.Id)
+            @Html.HiddenFor(u => u.Mission)
+            @Html.HiddenFor(u => u.Vision)
+            @Html.HiddenFor(u => u.AboutUs)
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.Address, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.Address, new { @class = "form-control" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(q => q.Email, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.Email, new { @class = "form-control" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(q => q.Location, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.Location, new { @class = "form-control" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(q => q.YoutubeID, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.YoutubeID, new { @class = "form-control" })
+                </div>
+            </div>
+            
+               <div class="form-group">
+                @Html.LabelFor(q => q.GooglePlus, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.GooglePlus, new { @class = "form-control" })
+                </div>
+            </div>
+            
+                <div class="form-group">
+                @Html.LabelFor(q => q.FacebookID, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.FacebookID, new { @class = "form-control" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(q => q.LinkedInID, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.LinkedInID, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.TwitterID, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.TwitterID, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.Phone1, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.Phone1, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.Phone2, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.Phone2, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(q => q.Phone3, new { @class = "control-label col-lg-3" })
+                <div class="col-lg-4">
+                    @Html.TextBoxFor(q => q.Phone3, new { @class = "form-control" })
+                </div>
+            </div>
+            
+
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-10">
+                    <input type="submit" value="Save" />
+                </div>
+            </div>
+
+        }
+    </div>
+</body>

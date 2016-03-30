@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "AddNews";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<body>
+
+    <div class="container">
+        <div class="col-lg-5"></div>
+        <h3 class="col-lg-6">Add A News</h3>
+    </div>
+
+    <div>
+        <form action="/EditWebsite/AddNewNews" class="form-horizontal" role="form" enctype="multipart/form-data" method="post">
+            <div class="col-lg-8">
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="title">News Title: </label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="title" placeholder="Enter News Title" required="required" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="description">News Description: </label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="description" placeholder="Enter News Description" required="" />
+                    </div>
+                    <div class="col-lg-3" id="result"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-lg-3" for="date">News Date: </label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="date" placeholder="Enter News Date" required="" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-3 col-lg-10">
+                    <input type="submit" value="Add News" id="sumbit" class="btn btn-success" @*onclick="return emailValidate()"*@ />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>

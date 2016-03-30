@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Contact</h2>
+
+@using EADWebTeacherFacilitationSystem.Models
+<body>
+    <div class="container">
+
+        <table class="table table-striped table-bordered table-hover">
+            <tr><th>Address</th><th>Email</th><th>Location</th><th>Youtube ID</th><th>Google-Plus ID</th><th>Facebook ID</th><th>LinkedIn ID</th><th>Twitter ID</th><th>Phone 1</th><th>Phone 2</th><th>Phone 3</th><th>Update</th></tr>
+
+            @foreach (About i in Model)
+            {
+                <tr><td>@i.Address</td><td>@i.Email</td><td>@i.Location</td><td>@i.YoutubeID</td><td>@i.GooglePlus</td><td>@i.FacebookID</td><td>@i.LinkedInID</td><td>@i.TwitterID</td><td>@i.Phone1</td><td>@i.Phone2</td><td>@i.Phone3</td><td> <a href="@("../EditWebsite/EditContact/" + i.Id)">   <input class="btn btn-primary" type="button" value="Edit"> </a> </td></tr>
+            }
+
+        </table>
+
+    </div>
+
+
+</body>

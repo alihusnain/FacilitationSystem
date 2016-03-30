@@ -1,0 +1,98 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>addSubjectSection</title>
+
+    <script>
+
+    $(document).ready(function () {
+
+
+
+
+        $('#lev').on('change',function () {
+
+            var lev = $('#lev').val();
+
+
+            $.getJSON("/Admin/GetSubjectName?lev=" + lev, function (data) {
+
+
+                $.each(data, function (i) {
+
+                    var optionhtml = '<option value="' +
+                data[i].SubjectName + '">' + data[i].SubjectName + '</option>';
+                    $("#sub").append(optionhtml);
+                });
+
+
+
+               
+               
+                
+               
+
+                for (var i = 0; i < data.length ; i++)
+                { alert(data[i].SubjectName); }
+                //    option.text = data[i].SubjectName;
+                //    x.add(option);
+                //}
+
+
+                //$('#sub').append("<option>" + data[i].SubjectName+ "</option>");
+                
+            });
+
+        });
+
+
+
+       
+
+    });
+    </script>
+
+
+</head>
+<body>
+    <div class="container">
+        <form class="form-inline" role="form" method="post" action="addSubjectSectionToDb">
+            <div class="form-group">
+                <label for="sel1">Level</label>
+                <select class="form-control" name="lev" style="width:100px" id="lev">
+                    @foreach (var sub in ViewBag.lev)
+                    {
+                        <option>@sub.LevelName</option>
+                    }
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sel1">Subject</label>
+                <select class="form-control" name="sub" style="width:100px" id="sub"></select>
+            </div>
+
+            <div class="form-group">
+                <label for="sel1">Section</label>
+                <select class="form-control" name="sec" style="width:100px" id="sec">
+                    @foreach (var sub in ViewBag.sec)
+                    {
+                        <option>@sub.SectionName</option>
+                    }
+                </select>
+            </div>
+
+            <input type="submit" value="ADD" />
+          </form>
+</div>
+</body>
+</html>

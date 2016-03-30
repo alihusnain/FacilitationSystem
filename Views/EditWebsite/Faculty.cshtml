@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Faculty";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Faculty</h2>
+
+@using EADWebTeacherFacilitationSystem.Models
+<body>
+    <div class="container">
+
+        <table class="table table-striped table-bordered table-hover">
+            <tr><th>Faculty ID</th><th>Faculty Designation</th><th>Faculty Name</th><th>Faculty Description</th><th>Facebook ID</th><th>Google Plus ID</th><th>Twitter ID</th><th>Instagram ID</th><th>Update</th><th>Remove</th></tr>
+
+            @foreach (Faculty i in Model)
+            {
+                <tr><td>@i.FacultyId</td><td>@i.FacultyDesignation</td><td>@i.FacultyName</td><td>@i.FacultyDescription</td><td>@i.FacebookID</td><td>@i.GooglePlusID</td><td>@i.TwitterID</td><td>@i.InstagramID</td><td> <a href="@("../EditWebsite/EditFaculty/" + i.FacultyId)">   <input class="btn btn-primary" type="button" value="Edit"> </a> </td><td><a href="@("../EditWebsite/DeleteFaculty/" + i.FacultyId)">   <input class="btn btn-danger" type="button" value="Delete"> </a></td></tr>
+            }
+
+        </table>
+
+    </div>
+
+    <div class="container">
+        <div class="col-lg-5"></div>
+        <a class="col-lg-6" href="@("../EditWebsite/AddFaculty")"> <input class="btn btn-info" type="button" value="Add a Faculty Member (+)"> </a>
+    </div>
+
+
+</body>

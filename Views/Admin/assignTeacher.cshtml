@@ -1,5 +1,5 @@
 ﻿@{
-   
+
     Layout = "~/Views/Shared/AdminLayout.cshtml";
     ViewBag.Title = "addSubjectSection";
 }
@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width" />
-    <title>addSubjectSection</title>
+    <title>assignTeacher</title>
 
     <script>
 
@@ -78,7 +78,21 @@
 </head>
 <body>
     <div class="container">
-        <form class="form-inline" role="form" method="post" action="addSubjectSectionToDb">
+        <form class="form-inline" role="form" method="post" action="assignTeacherToSubject">
+
+            <div class="form-group">
+                <label for="sel1">TeacherName</label>
+                <select class="form-control" name="teacher" style="width:100px" id="teacher">
+                    @foreach (var sub in ViewBag.teacher)
+                    {
+                        <option>@sub.TeacherName</option>
+                    }
+
+                </select>
+            </div>
+
+
+
             <div class="form-group">
                 <label for="sel1">Level</label>
                 <select class="form-control" name="lev" style="width:100px" id="lev">
